@@ -1,0 +1,39 @@
+{{#> page_layout page="code" title="Code" description="Some of my projects" }}
+  {{#*inline "content"}}
+    <header>
+      <h1 class="title">Code<small> 1000101</small></h1>
+      <h4 class="subtitle">Some projects</h4>
+    </header>
+
+    <section>
+      <p>This list is very much non-exhaustive, and pretty much exists for historical reasons. Some day I might update it to show everything I've made. Maybe.</p>
+      <p>Most of my public code is on <a href="https://github.com/AtoraSuunva">GitHub</a>, but here's a few:</p>
+
+      <article class="card">
+        <img class="circle-icon" src="/giraffeduck.png" width="60"/>
+        <h1>This site!</h1>
+        <p>I wrote all of this from scratch myself.</p>
+        <a href="/" class="button">You're already on it</a>
+      </article>
+
+      <article class="card">
+        <span class="circle-icon">boo</span>
+        <h1>Booru</h1>
+        <p><span class="code">booru</span> is a Node.js package to easily interface with the apis of several boorus.</p>
+        <p>Swapping boorus is as easy as changing 1 string (and you can use aliases for boorus as well)</p>
+        <p>It can commonfy the responses of boorus so you end up with all images in a common format no matter the souce booru</p>
+        <p>Can convert xml to json for you</p>
+        <p>"random order" support for sites that don't support "order:random"</p>
+        <a href="https://github.com/AtoraSuunva/booru/" class="button">Check it out</a>
+      </article>
+
+      <article class="card">
+        <span class="circle-icon">b!</span>
+        <h1>Bots</h1>
+        <p>Things on discord that do things when you say things.</p>
+        <p>They're all written in js (Discord.js) and hosted by myself (Unless otherwise specified).</p>
+        <a href="/bots" class="button">Whoa bots</a>
+      </article>
+    </section>
+  {{/inline}}
+{{/page_layout}}

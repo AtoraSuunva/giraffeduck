@@ -1,0 +1,502 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Inconsolata');
+
+/* These are some default, site wide styles*/
+/* Also why are you here? */
+
+/* Some basic body/hmtl stuff to remove borders/margins */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+a {
+  color: white;
+  -webkit-transition: color 0.25s ease;
+  -moz-transition: color 0.25s ease;
+  -o-transition: color 0.25s ease;
+  transition: color 0.25s ease;
+}
+
+a:hover {
+  color: #ACDEFF;
+}
+
+
+/* Navbar */
+
+nav,
+nav span,
+nav span>a,
+nav .icon,
+nav #nav-toggle~.icon,
+nav span.logo,
+nav span.logo a {
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+nav {
+  width: 100%;
+  height: 50px;
+  background-color: #29434e;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  z-index: 99;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+}
+
+nav + * {
+  margin-top: 50px;
+}
+
+nav span > a {
+  float: left;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav span.logo a {
+  padding: 0;
+}
+
+nav span > a:hover,
+nav .icon:hover,
+nav #nav-toggle:checked ~ .icon {
+  background-color: #607d8b;
+}
+
+nav span.selected a {
+  pointer-events: none;
+  cursor: default;
+}
+
+nav span.selected:not(.logo) a,
+nav span:not(.logo) > a:active,
+nav #nav-toggle:checked ~ .icon {
+  background-color: #607d8b;
+  box-shadow: inset 0px 5px 0px 0px #fff;
+}
+
+nav span.logo a {
+  height: 50px;
+  border-left: 0 solid white;
+}
+
+nav span.logo img {
+  margin: 5px;
+}
+
+nav .icon {
+  float: right;
+  display: none;
+  padding: 0 15px;
+  height: 50px;
+}
+
+
+/* burg */
+
+.hamburger-icon::before {
+  border: 1px solid white;
+  transform: translate(-1px, -6px);
+  width: 14px;
+  display: block;
+  content: '';
+}
+
+.hamburger-icon::after {
+  border: 1px solid white;
+  transform: translate(-1px, 3px);
+  width: 14px;
+  display: block;
+  content: '';
+}
+
+.hamburger-icon {
+  transform: translate(0px, 25px);
+  border: 1px solid white;
+  width: 14px;
+  height: 0px;
+}
+
+nav #nav-toggle {
+  display: none;
+}
+
+nav span.logo.selected a,
+nav span.logo:hover a {
+  border-left: 5px solid white;
+}
+
+
+/* Redundant but shhhh */
+
+.button {
+  display: inline-block;
+  text-align: center;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  text-decoration: none;
+  background-color: #546e7a;
+  margin: 4px 4px 0 0;
+  padding: 10px 16px;
+  border-radius: 2px;
+  min-width: 88px;
+  border: none;
+  white-space: nowrap;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.button:hover {
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 6.5px 3px;
+  color: #FFF;
+}
+
+.button:active {
+  background-color: #37474f;
+}
+
+
+/* The basic layout stuff */
+
+section {
+  background-color: #546e7a;
+  padding: 30px;
+  min-height: calc(100vh - 200px);
+  font-family: 'Roboto', sans-serif;
+  box-shadow: inset rgba(0, 0, 0, 1) 0 3.5px -6.5px 3px;
+  z-index: 9;
+}
+
+section > p {
+  margin: 35px 5%;
+}
+
+header {
+  background-color: #607d8b;
+  font-family: 'Roboto', sans-serif;
+  padding: 15px;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 1) 0px 15px 4px 5px;
+  z-index: 10;
+}
+
+header .title {
+  color: #fff;
+  font-size: 2em;
+  margin: 0 10%;
+}
+
+header .subtitle {
+  color: #fff;
+  font-size: 1.25em;
+  margin: 0 10%;
+}
+
+header .title small {
+  color: #eceff1;
+  font-size: 50%;
+}
+
+hr {
+  width: 75%;
+  opacity: 0.25;
+}
+
+
+/* Footer with credits */
+
+footer {
+  color: #ddd;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  padding: 7.5px 15px;
+  background-color: #263238;
+  text-align: center;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer ul {
+  margin-top: 0;
+}
+
+
+/* Contact info */
+
+.contact-info dt {
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+.contact-info dt {
+  margin-top: 10px;
+}
+
+
+/* contact us form */
+
+.contact-us-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.contact-us-form input {
+  margin-bottom: 15px;
+  height: 30px;
+  padding: 0 5px;
+  border: none;
+  border-bottom: 1px solid #689f38;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.contact-us-form input:not(.button) {
+  width: 100%;
+}
+
+.contact-us-form textarea {
+  margin-bottom: 15px;
+  width: 100%;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.contact-us-form input:selected {
+  border-bottom: 3px solid #689f38;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+}
+
+
+/* More stuff */
+
+.image-right {
+  float: right;
+}
+
+.circle-icon {
+  border-radius: 50%;
+}
+
+.circle-img {
+
+}
+
+/* Section Cards */
+
+
+/*
+ * +-------+----------------+
+ * | (I) | words words      |
+ * |     | words words      |
+ * |     | [BUTTON]         |
+ * +-------+----------------+
+ */
+
+section {
+  color: white;
+  padding: 15px 5%;
+}
+
+article.card,
+.tile-card {
+  background-color: #29434e;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 6.5px 3px;
+  padding: 40px;
+  min-height: 100px;
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  padding-left: 125px;
+}
+
+article.center {
+  padding-left: 40px;
+}
+
+.tile-card {
+  display: inline-block;
+  text-align: center;
+}
+
+article.card .circle-icon {
+  float: left;
+  text-align: center;
+  font-size: 2em;
+  line-height: 75px;
+  background-color: #546e7a;
+  width: 75px;
+  height: 75px;
+  margin-left: -100px;
+}
+
+article.card img.circle-icon {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+}
+
+
+/* Whoa responsive */
+
+@media screen and (max-width: 700px) {
+  .contact-us-form {
+    width: 90%;
+    margin: 0 auto;
+  }
+  article.card {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+  section {
+    padding: 15px;
+  }
+}
+
+
+/* Some little helpful styles */
+
+.code {
+  display: inline;
+  font-family: 'Inconsolata', monospace;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  border-radius: 2px;
+}
+
+.info {
+  display: table;
+  /* This gives me the look I'm going for so ¯\_(  )ツ_/¯? */
+  background-color: rgba(33, 150, 243, 0.1);
+  border-left: 5px solid #2196f3;
+  padding: 10px;
+}
+
+.center {
+  margin: 0 auto;
+  top: 50%;
+}
+
+.center-piece {
+  font-size: 1.25em
+}
+
+.center-piece a {
+  color: white;
+}
+
+
+/* Main Page */
+
+html#main-page,
+#main-page body {
+  height: 100%;
+}
+
+html#main-page {
+  text-align: center;
+  background-color: #263238;
+  padding: 0;
+}
+
+html#main-page section {
+  background: none;
+  overflow: hidden;
+}
+
+#main-page article .button {
+  background-color: none;
+}
+
+html#main-page article {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1151px) {
+  html#main-page article {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  html#main-page article {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  html#main-page article {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  html#main-page article {
+    width: 85%;
+  }
+}
+
+.dark-stripes {
+  background-image: repeating-linear-gradient(45deg, #aaa0, #aaa0 30px, #00000025 30px, #00000025 60px);
+}
+
+@media screen and (max-width: 375px) {
+  nav {
+    overflow: visible;
+  }
+  nav span:not(.logo),
+  nav span:not(.logo) a {
+    display: block;
+    float: right;
+    width: 100%;
+  }
+  nav span:not(.logo) {
+    width: 75%;
+  }
+  nav span:not(.logo) {
+    transform: translateX(100%);
+  }
+  nav #nav-toggle:checked~span:not(.logo) {
+    transform: translateX(1px);
+  }
+  nav span:not(.logo) a {
+    padding: 15px 0;
+    background-color: #29434e;
+  }
+  nav span.selected:not(.logo)>a,
+  nav span:not(.logo)>a:active {
+    box-shadow: inset 5px 0px 0px 0px #fff;
+  }
+  nav .icon {
+    display: inline-block;
+  }
+  article.card,
+  .tile-card {
+    padding: 15px;
+  }
+
+  article.center {
+    padding-left: inherit;
+  }
+}
