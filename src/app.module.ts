@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { BotsController } from './bots/bots.controller';
-import { BotsService } from './bots/bots.service';
+import { AppController } from './app.controller.js'
+import { BotsController } from './bots/bots.controller.js'
+import { BotsService } from './bots/bots.service.js'
+import { ApiModule } from './api/api.module.js'
 
 @Module({
-  imports: [],
+  imports: [ApiModule],
   controllers: [AppController, BotsController],
   providers: [BotsService],
 })

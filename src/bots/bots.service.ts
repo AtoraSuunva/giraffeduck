@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Bot } from './interfaces/bot'
+import { Bot } from './interfaces/bot.js'
 
 const BOTS: Bot[] = [
   {

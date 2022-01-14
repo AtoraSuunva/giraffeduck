@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core'
 import { NestExpressApplication } from '@nestjs/platform-express'
-import { join } from 'path'
-import { AppModule } from './app.module'
-import * as hbs from 'hbs'
-import { HELPERS, registerHelpers } from './handlebars'
+import { fileURLToPath } from 'url'
+import { join, dirname } from 'path'
+import { AppModule } from './app.module.js'
+import { default as hbs } from 'hbs'
+import { HELPERS, registerHelpers } from './handlebars.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 function dir(...directories: string[]): string {
   return join(__dirname, '..', ...directories)

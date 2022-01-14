@@ -8,7 +8,7 @@ import {
   Headers,
 } from '@nestjs/common'
 import { Response } from 'express'
-import { BotsService } from './bots.service'
+import { BotsService } from './bots.service.js'
 
 @Controller('bots')
 export class BotsController {
