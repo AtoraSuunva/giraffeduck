@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 import { join, dirname } from 'path'
 import { AppModule } from './app.module.js'
 import { default as hbs } from 'hbs'
-import { HELPERS, registerHelpers } from './handlebars.js'
+import { HELPERS, registerHelpers } from './utils/handlebars.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -23,6 +23,8 @@ async function bootstrap() {
   app.setViewEngine('hbs')
 
   await app.listen(3000)
+  const url = await app.getUrl()
+  console.log(`Listening on ${url}`)
 }
 
 void bootstrap()
