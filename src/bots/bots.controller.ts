@@ -17,7 +17,7 @@ export class BotsController {
   @Get()
   @Render('bots/index')
   getIndex() {
-    return ''
+    void 0
   }
 
   @Get(':name/invite')
@@ -32,14 +32,13 @@ export class BotsController {
   }
 
   @Get('smol/help')
-  @Render('bots/smol_troll')
   rickRoll(@Headers('user-agent') userAgent: string, @Res() res: Response) {
     const discordAgent = 'Discordbot/2.0'
 
-    if (!userAgent.includes(discordAgent)) {
+    if (userAgent.includes(discordAgent)) {
       return res.redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
     }
 
-    return ''
+    return res.render('bots/smol_troll')
   }
 }

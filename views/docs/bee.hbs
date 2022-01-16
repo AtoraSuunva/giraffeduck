@@ -1,0 +1,51 @@
+{{#> page_layout page="bee" title="Bee Movie API" description="Ya like jazz?" }}
+  {{#*inline "content"}}
+    <header>
+      <h1 class="title">The Bee Movie<small> but it's an api</small></h1>
+      <h4 class="subtitle code">/api/bee/</h4>
+    </header>
+
+    <section>
+      <p>The bee movie script as an api.</p>
+      <p>Why?</p>
+      <p>Why not?</p>
+      <p class="info">Args are given in the url (<span class="code">/api/bee/?line=4&amp;word=bee</span> for example)</p>
+
+      <article class="card">
+          <h1 class="code">/</h1>
+          <p>Get the entire script</p>
+          <p class="info"><b>Returns:</b> The entire script</p>
+          <a href="/api/bee/" class="button">Example</a>
+      </article>
+
+      <article class="card">
+          <h1 class="code">/?line=[Int]</h1>
+          <p>Get a certain line from the bee movie</p>
+          <p class="info"><b>Returns:</b> That line from the script</p>
+          <a href="/api/bee/?line=69" class="button">Example</a>
+      </article>
+
+      <article class="card">
+          <h1 class="code">/?word=[String]</h1>
+          <p>Get all lines at contain this word</p>
+          <p class="info"><b>Returns:</b> The lines that also contain the string specified</p>
+          <a href="/api/bee/?word=bee" class="button">Example</a>
+      </article>
+
+      <article class="card">
+          <h1 class="code">/?split=[String]</h1>
+          <p>The character to replace all the <span class="code">\r\n</span> with. (Using <span class="code">br</span> will replace the newlines with <span class="code">&lt;br&gt;</span> and actually put line breaks)</p>
+          <p class="info"><b>Returns:</b> Everything with the above as line seperator</p>
+          <a href="/api/bee/?split=br" class="button">Example</a>
+      </article>
+
+      <article class="card">
+          <h1 class="code">/?count=[String]</h1>
+          <p>Counts all occurences of the provided string, after all other filters are done. Overrides all other output</p>
+          <p class="info"><b>Returns:</b> A number</p>
+          <a href="/api/bee/?count=bee" class="button">Example</a>
+      </article>
+
+    </section>
+  {{/inline}}
+{{/page_layout}}
