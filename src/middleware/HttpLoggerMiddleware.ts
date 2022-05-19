@@ -9,13 +9,14 @@ export class HttpLoggerMiddleware implements NestMiddleware {
   use(request: Request, response: Response, next: NextFunction): void {
     const { ip, method, originalUrl: url } = request
     const userAgent = request.get('user-agent') || ''
+    const realIp = request.get('x-forwarded-for') || ip
 
     response.on('close', () => {
       const { statusCode } = response
       const contentLength = response.get('content-length')
 
       this.logger.log(
-        `${method} ${url} ${statusCode} (${contentLength}) - ${userAgent} ${ip}`,
+        `${method} ${url} ${statusCode} (${contentLength}) - ${userAgent} (${realIp})`,
       )
     })
 
