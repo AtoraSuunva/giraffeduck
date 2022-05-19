@@ -35,7 +35,7 @@ export class BotsController {
   rickRoll(@Headers('user-agent') userAgent: string, @Res() res: Response) {
     const discordAgent = 'Discordbot/2.0'
 
-    if (userAgent.includes(discordAgent)) {
+    if (!userAgent.includes(discordAgent)) {
       return res.redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
     }
 
