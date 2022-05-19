@@ -6,6 +6,7 @@ import { AppModule } from './app.module.js'
 import { default as hbs } from 'hbs'
 import { HELPERS, registerHelpers } from './utils/handlebars.js'
 import { Logger, ValidationPipe } from '@nestjs/common'
+import env from 'env-var'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -13,6 +14,8 @@ const __dirname = dirname(__filename)
 function dir(...directories: string[]): string {
   return join(__dirname, '..', ...directories)
 }
+
+const PORT = env.get('GIRAFFEDUCK_PORT').required().asString()
 
 async function bootstrap() {
   const logger = new Logger('bootstrap')
@@ -26,7 +29,7 @@ async function bootstrap() {
   registerHelpers(hbs.handlebars, HELPERS)
   app.setViewEngine('hbs')
 
-  await app.listen(3000)
+  await app.listen(PORT)
   const url = await app.getUrl()
   logger.log(`Listening on ${url}`)
 }
