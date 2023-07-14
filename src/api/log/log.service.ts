@@ -25,7 +25,7 @@ export class LogService {
       if (error instanceof RequestError) {
         const status = error.response?.statusCode
         if (status === 404 || status === 403) {
-          throw new Error('Archive not found')
+          throw new Error(`Archive not found, tried ${url}`)
         }
       }
       throw new Error('Failed to download archive')

@@ -18,30 +18,23 @@
 </head>
 
 <body class="theme-dark">
-{{#if archive }}
-<h3 id="meta"></h3>
+  {{#if error }}
+  <div id="error">{{ error }}</div>
+  {{/if}}
 
-<details>
-  <summary>Users</summary>
-  <ul id="users">
-  </ul>
-</details>
+  <h3 id="meta"></h3>
 
-<section id="messages">
-</section>
+  <details>
+    <summary>Users</summary>
+    <ul id="users">
+    </ul>
+  </details>
 
-<noscript>Enable JS for fancy logs</noscript>
+  <section id="messages"></section>
+  <noscript>Enable JS for fancy logs</noscript>
 
-<hr>
-<h3>Raw Archive</h3>
-
-
-<pre id="archive">{{ archive }}</pre>
-{{/if}}
-
-{{#if error }}
-<div class="error">{{ error }}</div>
-{{/if}}
+  <hr>
+  <h3>Raw Archive</h3>
+  <pre id="archive">{{#if archive }}{{ archive }}{{/if}}</pre>
 </body>
-
 </html>
