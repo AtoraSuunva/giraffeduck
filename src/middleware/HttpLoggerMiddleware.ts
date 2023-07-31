@@ -10,7 +10,7 @@ export class HttpLoggerMiddleware implements NestMiddleware {
     const { ip, method, originalUrl: url } = request
     const userAgent = request.get('user-agent') || ''
     const realIp = request.get('cf-connecting-ip') || request.get('x-forwarded-for') || ip
-    const country - request.get('cf-ipcountry') || '??'
+    const country = request.get('cf-ipcountry') || '??'
 
     response.on('close', () => {
       const { statusCode } = response
