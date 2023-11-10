@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Inconsolata');
 
-/* These are some default, site wide styles*/
-/* Also why are you here? */
-
-/* Some basic body/hmtl stuff to remove borders/margins */
-
 body,
 html {
   margin: 0;
@@ -52,11 +47,11 @@ nav {
   top: 0;
 }
 
-nav + * {
+nav+* {
   margin-top: 50px;
 }
 
-nav span > a {
+nav span>a {
   float: left;
   padding: 15px;
   text-align: center;
@@ -68,9 +63,9 @@ nav span.logo a {
   padding: 0;
 }
 
-nav span > a:hover,
+nav span>a:hover,
 nav .icon:hover,
-nav #nav-toggle:checked ~ .icon {
+nav #nav-toggle:checked~.icon {
   background-color: #607d8b;
 }
 
@@ -80,8 +75,8 @@ nav span.selected a {
 }
 
 nav span.selected:not(.logo) a,
-nav span:not(.logo) > a:active,
-nav #nav-toggle:checked ~ .icon {
+nav span:not(.logo)>a:active,
+nav #nav-toggle:checked~.icon {
   background-color: #607d8b;
   box-shadow: inset 0px 5px 0px 0px #fff;
 }
@@ -137,9 +132,6 @@ nav span.logo:hover a {
   border-left: 5px solid white;
 }
 
-
-/* Redundant but shhhh */
-
 .button {
   display: inline-block;
   text-align: center;
@@ -172,7 +164,7 @@ nav span.logo:hover a {
 
 /* The basic layout stuff */
 
-section {
+main {
   background-color: #546e7a;
   padding: 30px;
   min-height: calc(100vh - 200px);
@@ -181,7 +173,7 @@ section {
   z-index: 9;
 }
 
-section > p {
+main>p {
   margin: 35px 5%;
 }
 
@@ -297,11 +289,7 @@ footer ul {
   border-radius: 50%;
 }
 
-.circle-img {
-
-}
-
-/* Section Cards */
+/* Cards */
 
 
 /*
@@ -312,7 +300,7 @@ footer ul {
  * +-------+----------------+
  */
 
-section {
+main {
   color: white;
   padding: 15px 5%;
 }
@@ -364,11 +352,13 @@ article.card img.circle-icon {
     width: 90%;
     margin: 0 auto;
   }
+
   article.card {
     margin: 0;
     margin-bottom: 15px;
   }
-  section {
+
+  main {
     padding: 15px;
   }
 }
@@ -419,9 +409,14 @@ html#main-page {
   padding: 0;
 }
 
-html#main-page section {
+html#main-page main {
   background: none;
   overflow: hidden;
+}
+
+html#main-page main img {
+  height: 150px;
+  width: 150px;
 }
 
 #main-page article .button {
@@ -465,32 +460,40 @@ html#main-page article {
   nav {
     overflow: visible;
   }
+
   nav span:not(.logo),
   nav span:not(.logo) a {
     display: block;
     float: right;
     width: 100%;
   }
+
   nav span:not(.logo) {
     width: 75%;
   }
+
   nav span:not(.logo) {
     transform: translateX(100%);
   }
+
   nav #nav-toggle:checked~span:not(.logo) {
     transform: translateX(1px);
   }
+
   nav span:not(.logo) a {
     padding: 15px 0;
     background-color: #29434e;
   }
+
   nav span.selected:not(.logo)>a,
   nav span:not(.logo)>a:active {
     box-shadow: inset 5px 0px 0px 0px #fff;
   }
+
   nav .icon {
     display: inline-block;
   }
+
   article.card,
   .tile-card {
     padding: 15px;

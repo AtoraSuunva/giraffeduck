@@ -1,0 +1,8 @@
+{% macro card(title, description, link, buttontext, image) %}
+  <article class="card">
+    <img class="circle-icon" src="{{ image }}" width="60" />
+    <h1>{{ title }}</h1>
+    <p>{{ description }}</p>
+    <a href="{{ link }}" class="button">{{ buttontext }}</a>
+  </article>
+{% endmacro %}
