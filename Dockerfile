@@ -1,19 +1,30 @@
-FROM node:18 as build-step
+# Step that pulls in everything needed to build the app and builds it
+FROM node:20-alpine as dev-build
 WORKDIR /home/node/app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+RUN npm install -g pnpm
+COPY pnpm-lock.yaml ./
+RUN pnpm fetch
+COPY package.json ./
+RUN pnpm install --frozen-lockfile --offline
+COPY src/ ./src/
+COPY tsconfig.json ./
+RUN pnpm run build
 
-FROM node:18 as production-step
-WORKDIR /home/node/app
-COPY --from=build-step /home/node/app/package*.json ./
-COPY --from=build-step /home/node/app/dist ./
-RUN npm install --only=production
 
-FROM gcr.io/distroless/nodejs:18
-# Usually, we can just use USER node, but node isn’t defined in the distroless image.
-USER 1000
+# Step that only pulls in (production) deps required to run the app
+FROM node:20-alpine as prod-build
 WORKDIR /home/node/app
-COPY --from=production-step /home/node/app ./
-CMD ["dist/main.js"]
+RUN npm install -g pnpm
+COPY --from=dev-build /home/node/app/pnpm-lock.yaml ./
+COPY --from=dev-build /home/node/app/node_modules ./node_modules/
+COPY --from=dev-build /home/node/app/package.json ./
+RUN pnpm install --prod --frozen-lockfile
+COPY --from=dev-build /home/node/app/dist ./dist/
+
+
+# The actual runtime itself
+FROM node:20-alpine as prod-runtime
+WORKDIR /home/node/app
+COPY --from=prod-build /home/node/app ./
+USER node
+CMD [ "npm", "run", "start:prod" ]
