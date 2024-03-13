@@ -8,6 +8,8 @@ COPY package.json ./
 RUN pnpm install --frozen-lockfile --offline
 COPY src/ ./src/
 COPY tsconfig.json ./
+COPY /public ./public/
+COPY /views ./views/
 RUN pnpm run build
 
 
@@ -20,7 +22,8 @@ COPY --from=dev-build /home/node/app/node_modules ./node_modules/
 COPY --from=dev-build /home/node/app/package.json ./
 RUN pnpm install --prod --frozen-lockfile
 COPY --from=dev-build /home/node/app/dist ./dist/
-
+COPY --from=dev-build /home/node/app/public ./public/
+COPY --from=dev-build /home/node/app/views ./views/
 
 # The actual runtime itself
 FROM node:20-alpine as prod-runtime
