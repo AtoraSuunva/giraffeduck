@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import 'dotenv/config'
 import env from 'env-var'
+import { SizedMap } from './SizedMap.js'
 
 const DISCORD_URL = 'https://cdn.discordapp.com/attachments/'
 const FILE = 'archive.dlog.txt'
 
-const discordCache = new Map<string, string>()
+const discordCache = new SizedMap<string, string>(100)
 
 @Injectable()
 export class LogService {
