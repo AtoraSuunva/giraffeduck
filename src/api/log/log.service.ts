@@ -32,7 +32,7 @@ export class LogService {
       if (response.status === 404 || response.status === 403) {
         throw new Error(`Archive not found, tried ${refreshed}`)
       }
-      throw new Error('Failed to download archive')
+      throw new Error(`Failed to download archive, tried ${refreshed}`)
     }
 
     const log = await response.text()
@@ -82,6 +82,7 @@ async function refreshUrls<const T extends string[]>(
   })
 
   if (!response.ok) {
+    console.error('Failed to refresh urls', response)
     throw new Error('Failed to refresh urls')
   }
 

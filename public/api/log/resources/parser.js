@@ -9,19 +9,7 @@ async function main() {
   const errorElement = document.getElementById('error')
 
   if (errorElement) {
-    const [channelId, attachmentId] = new URL(document.URL).pathname
-      .split('/')
-      .pop()
-      .split('-')
-    const archiveUrl = `https://cdn.discordapp.com/attachments/${channelId}/${attachmentId}/archive.dlog.txt`
-
-    try {
-      const archive = await fetch(archiveUrl).then((r) => r.text())
-      document.getElementById('archive').innerText = archive
-      errorElement.style.display = 'none'
-    } catch (e) {
-      errorElement.innerText = e
-    }
+    return
   }
 
   const pre = document.getElementById('archive')
