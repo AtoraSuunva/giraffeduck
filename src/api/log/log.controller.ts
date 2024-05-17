@@ -18,13 +18,9 @@ export class LogController {
       )
       return { archive }
     } catch (error: unknown) {
-      let message = 'Unknown error'
+      console.error(error)
 
-      if (error instanceof Error) {
-        message = error.message
-      }
-
-      return { error: message }
+      return { error: error instanceof Error ? error.message : String(error) }
     }
   }
 }
