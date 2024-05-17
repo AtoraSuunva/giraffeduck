@@ -28,13 +28,13 @@ export class AttachmentsController {
         fileName,
       )
 
-      console.log('Response:', response.status, response.headers)
-
       // Copy the response from discord back into our response
       res.status(response.status)
       res.setHeader('Content-Type', response.headers.get('content-type') ?? '')
       return res.send(Buffer.from(await response.arrayBuffer()))
     } catch (error: unknown) {
+      console.error(error)
+
       return res
         .status(500)
         .send(error instanceof Error ? error.message : String(error))
