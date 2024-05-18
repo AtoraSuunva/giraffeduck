@@ -24,14 +24,14 @@ export class AttachmentService {
     const url = this.getDiscordLogUrl(channelId, attachmentId, fileName)
 
     if (discordCache.has(url)) {
-      return discordCache.get(url)
+      return discordCache.get(url).clone()
     }
 
     const { refreshed } = (await refreshUrls([url]))[0]
 
     const response = await fetch(refreshed)
 
-    discordCache.set(url, response)
+    discordCache.set(url, response.clone())
 
     return response
   }
