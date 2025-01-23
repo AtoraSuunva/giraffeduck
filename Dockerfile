@@ -1,4 +1,5 @@
-FROM rust:1.84 AS chef
+FROM clux/muslrust:stable AS chef
+USER root
 RUN cargo install cargo-chef
 WORKDIR /app
 
@@ -8,14 +9,13 @@ RUN cargo chef prepare --recipe-path recipe.json
 
 FROM chef AS builder
 COPY --from=planner /app/recipe.json recipe.json
-RUN cargo chef cook --release --recipe-path recipe.json
+RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
 COPY . .
-RUN cargo build --release --bin giraffeduck
+RUN cargo build --release --target x86_64-unknown-linux-musl --bin giraffeduck
 
-FROM debian:bookworm-slim
-RUN apt-get update && apt-get install -y libssl3 && rm -rf /var/lib/apt/lists/*
+FROM gcr.io/distroless/static:nonroot
 WORKDIR /app
-COPY --from=builder /app/target/release/giraffeduck /usr/local/bin
+COPY --from=builder --chown=nonroot:nonroot /app/target/x86_64-unknown-linux-musl/release/giraffeduck /app/giraffeduck
 COPY --from=builder /app/public /app/public
 COPY --from=builder /app/templates /app/templates
-CMD ["giraffeduck"]
+CMD ["/app/giraffeduck"]

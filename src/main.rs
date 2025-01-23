@@ -9,7 +9,7 @@ use openssl::ssl::{SslConnector, SslMethod};
 
 #[web::get("/")]
 async fn hello() -> impl web::Responder {
-    web::HttpResponse::Ok().body("Hello world! This server only hosts APIs, you should head to https://atora.dev or https://github.com/AtoraSuunva/giraffeduck")
+    web::HttpResponse::Ok().content_type("text/plain; charset=utf-8").body("Hello world! This server only hosts APIs, you should head to https://atora.dev")
 }
 async fn p404() -> impl web::Responder {
     web::HttpResponse::NotFound().body("404 Not Found! This server only hosts APIs, you should head to https://atora.dev or https://github.com/AtoraSuunva/giraffeduck")
