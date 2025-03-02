@@ -9,10 +9,21 @@ use openssl::ssl::{SslConnector, SslMethod};
 
 #[web::get("/")]
 async fn hello() -> impl web::Responder {
-    web::HttpResponse::Ok().content_type("text/plain; charset=utf-8").body("Hello world! This server only hosts APIs, you should head to https://atora.dev")
+    web::HttpResponse::Ok()
+        .content_type("text/plain; charset=utf-8")
+        .body("Hello world! This server only hosts APIs, you should head to https://atora.dev")
 }
 async fn p404() -> impl web::Responder {
-    web::HttpResponse::NotFound().body("404 Not Found! This server only hosts APIs, you should head to https://atora.dev or https://github.com/AtoraSuunva/giraffeduck")
+    web::HttpResponse::NotFound()
+        .content_type("text/plain; charset=utf-8")
+        .body("404 Not Found! This server only hosts APIs, you should head to https://atora.dev or https://github.com/AtoraSuunva/giraffeduck")
+}
+
+#[web::get("/health")]
+async fn health() -> impl web::Responder {
+    web::HttpResponse::Ok()
+        .content_type("text/plain; charset=utf-8")
+        .body("OK")
 }
 
 #[ntex::main]
@@ -41,6 +52,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(middleware::Compress::default())
             .wrap(middleware::DefaultHeaders::new().header("X-Content-Type-Options", "nosniff"))
             .service(hello)
+            .service(health)
             .service(ntex_files::Files::new("/api/fox/img", "public/api/fox/img"))
             .service(web::scope("/api").service((
                 attachments::get_attachment,
