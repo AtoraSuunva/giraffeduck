@@ -19,7 +19,7 @@ async fn p404() -> impl web::Responder {
         .body("404 Not Found! This server only hosts APIs, you should head to https://atora.dev or https://github.com/AtoraSuunva/giraffeduck")
 }
 
-#[web::get("/health")]
+#[web::get("/healthcheck")]
 async fn health() -> impl web::Responder {
     web::HttpResponse::Ok()
         .content_type("text/plain; charset=utf-8")

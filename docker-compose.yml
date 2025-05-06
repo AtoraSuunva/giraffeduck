@@ -10,6 +10,11 @@ services:
       - 8080:8080
     env_file:
       - .env
+    healthcheck:
+      test: [ "CMD", "/app/healthcheck", "http://giraffeduck:8080/healthcheck" ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
     # networks:
     #   - caddy
     labels:

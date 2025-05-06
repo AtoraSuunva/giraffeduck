@@ -15,6 +15,7 @@ RUN cargo build --release --target x86_64-unknown-linux-musl --bin giraffeduck
 
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /app
+COPY --from=builder --chown=nonroot:nonroot /app/target/x86_64-unknown-linux-musl/release/healthcheck /app/healthcheck
 COPY --from=builder --chown=nonroot:nonroot /app/target/x86_64-unknown-linux-musl/release/giraffeduck /app/giraffeduck
 COPY --from=builder /app/public /app/public
 COPY --from=builder /app/templates /app/templates
