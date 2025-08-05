@@ -5,7 +5,7 @@ use ntex::{
     http::{client::Connector, Client},
     web::{self, guard, middleware},
 };
-use openssl::ssl::{SslConnector, SslMethod};
+use rustls_platform_verifier::{BuilderVerifierExt, ConfigVerifierExt};
 
 #[web::get("/")]
 async fn hello() -> impl web::Responder {
@@ -38,10 +38,13 @@ async fn main() -> std::io::Result<()> {
     let handlebars_ref = Arc::new(handlebars);
 
     web::HttpServer::new(move || {
-        let builder = SslConnector::builder(SslMethod::tls()).unwrap();
+        let builder = rustls::ClientConfig::builder()
+            .with_platform_verifier()
+            .unwrap()
+            .with_no_client_auth();
 
         let client = Client::build()
-            .connector(Connector::default().openssl(builder.build()).finish())
+            .connector(Connector::default().rustls(builder).finish())
             .response_payload_limit(1_000_000)
             .finish();
 
