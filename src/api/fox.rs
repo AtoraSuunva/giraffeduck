@@ -1,7 +1,7 @@
 use std::{fs, path::Path, sync::LazyLock};
 
 use ntex::web;
-use rand::seq::SliceRandom;
+use rand::prelude::IndexedRandom;
 
 #[derive(serde::Deserialize)]
 struct QueryOptions {
@@ -78,7 +78,7 @@ async fn fox(req: web::HttpRequest, query: web::types::Query<QueryOptions>) -> i
     }
 
     // Otherwise, pick a random image and return data about it as JSON
-    let redirect = FOX_IMG.choose(&mut rand::thread_rng());
+    let redirect = FOX_IMG.choose(&mut rand::rng());
 
     if let Some(redirect) = redirect {
         return web::HttpResponse::Ok().json(&FoxImg {
@@ -99,7 +99,7 @@ async fn fox_direct(req: web::HttpRequest) -> impl web::Responder {
     );
 
     // Pick a random image from FOX_IMG
-    let redirect = FOX_IMG.choose(&mut rand::thread_rng());
+    let redirect = FOX_IMG.choose(&mut rand::rng());
 
     if let Some(redirect) = redirect {
         return web::HttpResponse::TemporaryRedirect()
