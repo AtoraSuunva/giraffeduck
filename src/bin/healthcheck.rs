@@ -18,7 +18,10 @@ fn main() -> ExitCode {
     let endpoint = args.get(1).unwrap();
     let timeout = args.get(2).and_then(|s| s.parse().ok()).unwrap_or(3);
 
+    println!("Healthcheck {} with {}s timeout", endpoint, timeout);
     let res = run(endpoint, timeout);
+
+    println!("Healthcheck response: {:?}", res);
 
     if res.is_err() {
         println!("Healthcheck failed: {}", res.unwrap_err());
