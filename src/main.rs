@@ -5,7 +5,7 @@ use ntex::{
     http::{client::Connector, Client},
     web::{self, guard, middleware},
 };
-use rustls_platform_verifier::{BuilderVerifierExt, ConfigVerifierExt};
+use rustls_platform_verifier::BuilderVerifierExt;
 
 #[web::get("/")]
 async fn hello() -> impl web::Responder {
