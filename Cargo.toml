@@ -7,12 +7,12 @@ edition = "2021"
 env_logger = "0.11.8"
 handlebars = "6.3.2"
 lazy_static = "1.5.0"
-lru = "0.16.0"
-minreq = { version = "2.14.0", features = ["https-rustls"] }
-ntex = { version = "2.15.1", features = ["compress", "rustls", "tokio", "url"] }
+lru = "0.16.1"
+minreq = { version = "2.14.1", features = ["https-rustls"] }
+ntex = { version = "2.16.0", features = ["compress", "rustls", "tokio", "url"] }
 ntex-files = "2.1.0"
 rand = "0.9.2"
-rustls = "0.23.31"
+rustls = "0.23.32"
 rustls-platform-verifier = "0.6.1"
-serde = { version = "1.0.219", features = ["derive"] }
-url = "2.5.4"
+serde = { version = "1.0.228", features = ["derive"] }
+url = "2.5.7"
