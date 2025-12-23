@@ -21,17 +21,23 @@ fn main() -> ExitCode {
     println!("Healthcheck {} with {}s timeout", endpoint, timeout);
     let res = run(endpoint, timeout);
 
-    println!("Healthcheck response: {:?}", res);
-
     if res.is_err() {
         println!("Healthcheck failed: {}", res.unwrap_err());
         return ExitCode::from(1);
     }
 
-    let code = res.unwrap().status_code;
+    let res = res.unwrap();
 
-    if code > 299 {
-        println!("Received status code: {}", code);
+    // Print the first 200 bytes of the response body for debugging purposes
+    if let Ok(body) = res.as_str() {
+        println!("Response body (first 200 bytes): {}", &body[..body.len().min(200)]);
+    }
+
+    let code = res.status_code;
+    println!("Received status code: {}", code);
+
+    if code < 200 || code >= 300 {
+        println!("Received non-200 status code! Exiting as an error.");
         return ExitCode::from(1);
     }
 
